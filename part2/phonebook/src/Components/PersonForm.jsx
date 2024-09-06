@@ -57,12 +57,20 @@ const PersonForm = ({ persons, setPersons }) => {
     .addPerson(person)
     .then((person) => {
       setPersons(persons.concat(person));
+      setError('exists')
       setMessage(`Added ${newName}`);
       setTimeout(() => {
         setMessage("");
       }, 5000);
       setPhone("");
       setNewName("");
+    })
+    .catch(error => {
+      setError('error')
+      setMessage('a validation error occurred name too small or number is incorrect');
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
     });
   };
 
@@ -75,7 +83,7 @@ const PersonForm = ({ persons, setPersons }) => {
       </div>
       <div>
         number:
-        <input values={phone} onChange={(e) => setPhone(e.target.value)} />
+        <input value={phone} onChange={(e) => setPhone(e.target.value)} />
       </div>
       <div>
         <button type="submit">add</button>
