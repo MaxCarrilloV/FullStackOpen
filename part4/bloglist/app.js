@@ -31,7 +31,6 @@ app.use('/api/users',userRouter)
 app.use('/api/login',loginRoute)
 
 app.use(middleware.tokenExtractor)
-app.use(middleware.userExtractor)
 
 app.use('/api/blogs', blogRouter)
 
