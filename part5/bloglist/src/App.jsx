@@ -37,7 +37,7 @@ const App = () => {
         setErrorMessage(null)
         setError('exists')
       }, 5000)
-  }}
+    }}
 
   const updateBlog = (blogup) => {
     blogService.update(blogup).then((blogup) => {
@@ -62,7 +62,7 @@ const App = () => {
         setErrorMessage('')
         setError('exists')
       }, 5000)
-  }}
+    }}
 
   const removeBlog = (blogdel) => {
     try {
