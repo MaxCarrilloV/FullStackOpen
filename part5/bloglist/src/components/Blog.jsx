@@ -2,22 +2,29 @@ import { useState } from 'react'
 
 const Blog = ({ blog, user, updateBlog, removeBlog }) => {
   const [view, setView] = useState(false)
+  const [userView,setUserView] = useState(user)
   const [blogView, setBlogView] = useState(blog)
   const show = { display: view ? '' : 'none' }
 
   const toggleVisibility = () => {
     setView(!view)
   }
-
-  const showRemove = { display: blogView.user.id === user ? '' : 'none' }
+  let showRemove
+  if(blogView.user.id){
+     showRemove = { display: blogView.user.id === userView.id ? '' : 'none' }
+  }else{
+    showRemove = { display: blogView.user === userView.id ? '' : 'none' }
+  }
+  
 
   const handleLike = (blogup) => {
-    blogup.likes += 1    
-    updateBlog(blogup)
-    setBlogView(blogup)
+    const update = { ...blogup, likes: blogup.likes + 1 }   
+    updateBlog(update)
+    setBlogView(update)
+    setUserView(userView)
   }
 
-  const handleRemove = () => removeBlog(blogView)
+  const handleRemove =async () => removeBlog(blogView)
 
   const label = view ? 'Hide' : 'View'
 
@@ -40,10 +47,10 @@ const Blog = ({ blog, user, updateBlog, removeBlog }) => {
         <p >{blogView.author} </p>
         <p>
           Likes {blogView.likes}
-          <button onClick={() => handleLike(blogView)}>Like</button>
+          <button  onClick={() => handleLike(blogView)}>Like</button>
         </p>
         <p> {blogView.url}</p>
-        <button style={showRemove} onClick={() => handleRemove(blogView)}>
+        <button style={showRemove} onClick={handleRemove}>
           Remove
         </button>
       </div>

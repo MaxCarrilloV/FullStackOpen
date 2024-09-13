@@ -12,6 +12,7 @@ const LoginForm = ({
       <div>
         Username:
         <input
+          data-testid='username'
           type="text"
           value={username}
           name="username"
@@ -21,6 +22,7 @@ const LoginForm = ({
       <div>
         Password:
         <input
+          data-testid='password'
           type="password"
           value={password}
           name="password"

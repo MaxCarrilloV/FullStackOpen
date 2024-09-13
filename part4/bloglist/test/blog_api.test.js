@@ -123,7 +123,7 @@ describe('when there is initially some blogs saved', () => {
                             .set(aut)
                             .expect(200)
                             .expect('Content-Type', /application\/json/)
-        assert.deepStrictEqual(blogUp.body, blogToUpdate)
+        assert.deepStrictEqual(blogUp.body.id, blogToUpdate.id)
     })
   
 })

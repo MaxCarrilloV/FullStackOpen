@@ -32,7 +32,7 @@ const remove = async id => {
     headers: { Authorization: Token },
   }
   const res = await axios.delete(`${baseUrl}/${id}`,config)
-  return res.status
+  return res.data
 }
 
 export default { setToken, getAll, create, update, remove }

@@ -24,6 +24,7 @@ const BlogForm = ({ createBlog }) => {
       <div>
         Title:
         <input
+          data-testid='title'
           type="text"
           name="title"
           placeholder='Title blog'
@@ -34,6 +35,7 @@ const BlogForm = ({ createBlog }) => {
       <div>
         Author:
         <input
+          data-testid='author'
           type="text"
           name="author"
           value={author}
@@ -43,6 +45,7 @@ const BlogForm = ({ createBlog }) => {
       <div>
         Url
         <input
+          data-testid='url'
           type="text"
           name="url"
           value={url}
@@ -54,10 +57,7 @@ const BlogForm = ({ createBlog }) => {
   )
 }
 BlogForm.propTypes = {
-  blogs: PropTypes.array.isRequired,
-  setBlogs: PropTypes.func.isRequired,
-  setErrorMessage:PropTypes.func.isRequired,
-  setError:PropTypes.func.isRequired,
+  createBlog: PropTypes.func.isRequired,
 }
 
 export default BlogForm

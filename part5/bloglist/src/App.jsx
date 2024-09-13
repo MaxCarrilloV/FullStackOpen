@@ -64,26 +64,24 @@ const App = () => {
       }, 5000)
   }}
 
-  const removeBlog = async (blogdel) => {
-    if (window.confirm(`Remove blog ${blogdel.title} by ${blogdel.author}`)) {
-      try {
-        const res = await blogService.remove(blogdel.id)
-        if (res === 204) {
-          setErrorMessage(`blog ${blogdel.title} is deleted`)
-          setBlogs(blogs.filter((b) => b.id !== blogdel.id))
-          setError('exists')
-          setTimeout(() => {
-            setErrorMessage(null)
-          }, 5000)
-        }
-      } catch (error) {
-        setErrorMessage('Wrong credentials')
-        setError('error')
+  const removeBlog = (blogdel) => {
+    try {
+      if (window.confirm(`Remove blog ${blogdel.title} by ${blogdel.author}`)) {
+        blogService.remove(blogdel.id)
+        setBlogs(blogs.filter((b) => b.id !== blogdel.id))
+        setErrorMessage(`blog ${blogdel.title} is deleted`)
+        setError('exists')
         setTimeout(() => {
           setErrorMessage(null)
-          setError('exists')
         }, 5000)
       }
+    } catch (error) {
+      setErrorMessage('Wrong credentials')
+      setError('error')
+      setTimeout(() => {
+        setErrorMessage(null)
+        setError('exists')
+      }, 5000)
     }}
 
   const handleLogout = () => {
@@ -121,7 +119,7 @@ const App = () => {
         <div>
           <h1>Blogs</h1>
           <p>
-            {user.username} logged in{' '}
+            {user.name} logged in
             <button onClick={() => handleLogout()}>Logout</button>
           </p>
           <Toggable buttonlabel='New blog' ref={blogFormRef}>
@@ -129,13 +127,13 @@ const App = () => {
               createBlog={createBlog}
             ></BlogForm>
           </Toggable>
-          {blogs.map((blog) => (
+          {blogs && blogs.map((blog) => (
             <Blog
               key={blog.id}
               blog={blog}
               updateBlog={updateBlog}
               removeBlog={removeBlog}
-              user={user.id}
+              user={user}
             />
           ))}
         </div>
