@@ -1,0 +1,29 @@
+{
+  "name": "patientorbackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "dev": "ts-node-dev src/index.ts",
+    "lint": "eslint --ext .ts .",
+    "start": "node build/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.18",
+    "@types/uuid": "^10.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.3",
+    "@typescript-eslint/parser": "^6.7.3",
+    "cors": "^2.8.5",
+    "eslint": "^8.50.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.2.2",
+    "uuid": "^10.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.1"
+  }
+}
